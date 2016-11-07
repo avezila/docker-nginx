@@ -11,4 +11,3 @@ RUN dnf install --setopt=tsflags=nodocs -y nginx \
 EXPOSE 80 443
 
 CMD ["nginx", "-g", "daemon off;"]
-
