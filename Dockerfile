@@ -2,7 +2,7 @@ FROM fedora
 
 MAINTAINER pioh "thepioh@zoho.com"
 
-RUN dnf install --setopt=tsflags=nodocs -y nginx \
+RUN dnf install --setopt=tsflags=nodocs -y nginx wget tar perl perl-core gcc \
  && dnf update --setopt=tsflags=nodocs -y \
  && dnf clean all \
  && ln -sf /dev/stdout /var/log/nginx/access.log \
@@ -15,6 +15,7 @@ RUN dnf install --setopt=tsflags=nodocs -y nginx \
  && ./config --prefix=/opt/openssl --openssldir=/usr/ssl \
  && make \
  && make install \
+ && rm -rf /opt/openssl/share \
  && cp -r /opt/openssl/* /usr/ \
  && ldconfig \
  && openssl version \
@@ -22,8 +23,7 @@ RUN dnf install --setopt=tsflags=nodocs -y nginx \
  && ldconfig \
  && openssl version \
  && cd ~ \
- && rm -rf /opt/openssl \
- && rm -rf openssl*
+ && rm -rf openssl* /opt/openssl
 
 
 
