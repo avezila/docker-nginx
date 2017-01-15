@@ -19,9 +19,6 @@ RUN dnf install --setopt=tsflags=nodocs -y nginx wget tar perl perl-core gcc \
  && cp -r /opt/openssl/* /usr/ \
  && ldconfig \
  && openssl version \
- && find /opt/openssl/ | grep libssl.so.1.1 \
- && ldconfig \
- && openssl version \
  && cd ~ \
  && rm -rf openssl* /opt/openssl
 
